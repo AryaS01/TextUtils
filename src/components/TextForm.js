@@ -35,35 +35,42 @@ export default function TextForm(props) {
     let text=document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showAlert("Text copied successfully!","success");
   }
+
   const handleUpclick= ()=>{
     //console.log("Uppercase was clicked" + text)
     let newText=text.toUpperCase();
     setText(newText)
+    props.showAlert("Text converted to Uppercase successfully!","success");
   }
 
   const handleSpaces =()=>{
      //console.log("Remove extra spaces was clicked" + text)
      let newText=text.split(/[ ]+/);
      setText(newText.join(" "))
+     props.showAlert("Removed extra spaces successfully!","success");
   }
 
   const handleReverseclick= ()=>{
     //console.log("Create Reverse was clicked" + text)
     let newText=text.split("").reverse().join("");
     setText(newText)
+    props.showAlert("Text reversed successfully!","success");
   }
 
   const handleClearclick= ()=>{
     //console.log("Clear was clicked" + text)
     let newText='';
     setText(newText)
+    props.showAlert("Cleared text!","success");
   }
 
   const handleLowclick= ()=>{
     //console.log("Lowercase was clicked" + text)
     let newText=text.toLowerCase();
     setText(newText)
+    props.showAlert("Text converted to lowercase successfully!","success");
   }
 
   const handleOnChange= (event)=>{
@@ -91,7 +98,7 @@ export default function TextForm(props) {
       <p> {text.split(" ").length-1} words {text.length} characters</p>
       <p>{0.008 * (text.split(" ").length)} minutes read</p>
       <h2> Preview </h2>
-      <p>{text}</p>
+      <p>{text.length>0?text:"Type something to preview it here"}</p>
       </div>
   </>
   )
